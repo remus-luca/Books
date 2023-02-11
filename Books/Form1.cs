@@ -50,13 +50,13 @@ namespace Books
 
         private void button3_Click(object sender, EventArgs e)
         {
-            con.Open();
 
-            SqlCommand cmd = new SqlCommand("DELETE FROM dbo.BooksTable WHERE BookID = @BookID", con);
-            cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@BookID", this.BookID);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            //SqlCommand cmd = new SqlCommand("DELETE FROM dbo.BooksTable WHERE BookID = @BookID", con);
+            //cmd.CommandType = CommandType.Text;
+            //cmd.Parameters.AddWithValue("@BookID", this.BookID);
+            //con.Open();
+            //cmd.ExecuteNonQuery();
+            //con.Close();
 
 
 
