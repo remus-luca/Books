@@ -50,37 +50,30 @@ namespace Books
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-            //SqlCommand cmd = new SqlCommand("DELETE FROM dbo.BooksTable WHERE BookID = @BookID", con);
-            //cmd.CommandType = CommandType.Text;
-            //cmd.Parameters.AddWithValue("@BookID", this.BookID);
-            //con.Open();
-            //cmd.ExecuteNonQuery();
-            //con.Close();
-
-
-
-            //SqlConnection con = new SqlConnection(conString);
-            //string sql = "DELETE FROM BooksTable";
-            //SqlCommand cmd = new SqlCommand(sql, con);
-            //con.Open();
-            //cmd.ExecuteNonQuery();
-            //con.Close();
+            DialogResult dialog = MessageBox.Show("Are you sure you want to delete the book?", "Exit", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                SqlCommand cmd = new SqlCommand("DELETE FROM dbo.BooksTable WHERE BookID = @BookID", con);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@BookID", this.BookID);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                GetBooks();
+            }
 
 
-            //SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-MK5GMMO\SQLEXPRESS;Initial Catalog=Book_DB;Integrated Security=True");
-            //SqlCommand cmd = new SqlCommand("DELETE FROM dbo.BookTable WHERE BookID=@ID", con);
-            //cmd.CommandType = CommandType.Text();
-            //cmd.Parameters.AddWithValue("@ID", this.BookID);
-            // Form2 form = new Form2(BookID);
+        }
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            BookID = Convert.ToInt32(dataGridView1.Rows[0].Cells[0].Value);
+        }
 
-            //con.Open();
-            //SqlCommand cmd = new SqlCommand("DELETE FROM dbo.BooksTable WHERE BookID = @BookID", con);
-            //cmd.Parameters.AddWithValue("@BookID", this.BookID);
-            //cmd.ExecuteNonQuery();
-            //con.Close();
-            //GetBooks();
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.ShowDialog();
 
 
         }

@@ -17,18 +17,6 @@ namespace Books
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //SqlCommand cmd = new SqlCommand("INSERT INTO BooksTable VALUES (@Title,@Author,@YearOfPublication,@Publisher)", con);
-            //cmd.CommandType = CommandType.Text;
-            //cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
-            //cmd.Parameters.AddWithValue("@Author", txtAuthor.Text);
-            //cmd.Parameters.AddWithValue("@YearOfPublication", txtYear.Text);
-            //cmd.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
-            //con.Open();
-            //cmd.ExecuteNonQuery();
-            //con.Close();
-
-            //ResetFormControls();
-            //this.Close();
 
             con.Open();
             SqlCommand cmd = new SqlCommand("INSERT INTO BooksTable (Title,Author,YearOfPublication,Publisher) Values (@Title, @Author, @YearOfPublication, @Publisher)", con);
@@ -40,7 +28,6 @@ namespace Books
             con.Close();
             ResetFormControls();
             this.Close();
-
         }
         private void ResetFormControls()
         {
@@ -57,7 +44,14 @@ namespace Books
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            //SqlCommand cmd = new SqlCommand("UPDATE BooksTable SET txtTitle=@Title,txtAuthor=@Author,txtYear=@YearOfPublication,txtPublisher=@Publisher WHERE BookID=@BookID", con);
+            //cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
+            //cmd.Parameters.AddWithValue("@Author", txtAuthor.Text);
+            //cmd.Parameters.AddWithValue("@YearOfPublication", txtYear.Text);
+            //cmd.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
+            //con.Open();
+            //cmd.ExecuteNonQuery();
+            //con.Close();
         }
     }
 }
