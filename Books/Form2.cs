@@ -12,6 +12,7 @@ namespace Books
             InitializeComponent();
 
         }
+        
 
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-MK5GMMO\SQLEXPRESS;Initial Catalog=Books;Integrated Security=True");
 
