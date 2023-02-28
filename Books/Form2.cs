@@ -12,7 +12,12 @@ namespace Books
             InitializeComponent();
 
         }
-        
+        public Form2(Book book)
+        {
+      
+            InitializeComponent();
+
+        }
 
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-MK5GMMO\SQLEXPRESS;Initial Catalog=Books;Integrated Security=True");
 
