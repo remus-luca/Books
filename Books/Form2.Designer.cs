@@ -48,6 +48,7 @@ namespace Books
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(197, 26);
             this.txtTitle.TabIndex = 0;
+            this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
             // 
             // txtPublisher
             // 

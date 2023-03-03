@@ -8,7 +8,6 @@ namespace Books
     public partial class Form1 : Form
     {
         public int BookID;
-
         public Form1()
         {
             InitializeComponent();
@@ -46,7 +45,6 @@ namespace Books
             dt.Load(sdr);
             con.Close();
             dataGridView1.DataSource = dt;
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -62,8 +60,6 @@ namespace Books
                 con.Close();
                 GetBooks();
             }
-
-
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -71,27 +67,39 @@ namespace Books
             if (e.RowIndex >= 0)
             {
                 BookID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-               
             }
             else
             {
                 BookID = Convert.ToInt32(dataGridView1.Rows[0].Cells[0].Value);
-
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-          
+            Book book = new Book();
+            SqlDataReader sReader;
+            SqlCommand cmd = new SqlCommand("Select * from dbo.BooksTable WHERE BookID=@BookID", con);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@BookID", this.BookID);
+            con.Open();
+            sReader = cmd.ExecuteReader();
 
+            while (sReader.Read())
+            {
+                book.BookID = Convert.ToInt32(sReader["BookID"]);
+                book.Title = Convert.ToString(sReader["Title"]);
+                book.Author = Convert.ToString(sReader["Author"]);
+                book.YearOfPublication = Convert.ToString(sReader["YearOfPublication"]);
+                book.Publisher = Convert.ToString(sReader["Publisher"]);
 
             }
-           
-
+            con.Close();
+            Form2 form = new Form2(book);
+            form.ShowDialog();
+            GetBooks();
         }
 
 
     }
-
+}
 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Books
+﻿namespace Books
 {
-  public  class Book
+    public class Book
     {
         public int BookID { get; set; }
         public string Title { get; set; }
