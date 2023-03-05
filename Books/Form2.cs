@@ -29,7 +29,7 @@ namespace Books
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             if (isNewBook == true)
             {
                 con.Open();
@@ -66,7 +66,7 @@ namespace Books
             txtYear.Clear();
             txtPublisher.Clear();
         }
-       
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -108,6 +108,11 @@ namespace Books
         private void txtPublisher_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsLetter(e.KeyChar);
+
+        }
+
+        private void txtPublisher_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

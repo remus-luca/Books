@@ -58,6 +58,7 @@ namespace Books
             this.txtPublisher.Name = "txtPublisher";
             this.txtPublisher.Size = new System.Drawing.Size(197, 26);
             this.txtPublisher.TabIndex = 1;
+            this.txtPublisher.TextChanged += new System.EventHandler(this.txtPublisher_TextChanged);
             this.txtPublisher.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPublisher_KeyPress);
             // 
             // txtYear

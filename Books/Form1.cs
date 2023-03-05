@@ -101,17 +101,22 @@ namespace Books
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string cmd = "Select * from [dbo].[BooksTable] where BooksTable like '" + textBox1.Text+"%'";
-            con.Open();
-            SqlCommand sqlCom = new SqlCommand(cmd, con);
-            SqlDataAdapter sdr = new SqlDataAdapter(sqlCom);
+            if (txtSearch.Text == string.Empty)
+            {
+                GetBooks();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand("Select * from BooksTable where Title Like @search + '%' or Author Like @search + '%' or" + " YearOfPublication Like @search + '%' or Publisher Like @search + '%'", con);
+            cmd.Parameters.AddWithValue("search", txtSearch.Text);
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
             DataTable dt = new DataTable();
-            sdr.Fill(dt);
+            dt.Clear();
+            da.Fill(dt);
             dataGridView1.DataSource = dt;
-            con.Close();
-             
-
-
         }
     }
 }
