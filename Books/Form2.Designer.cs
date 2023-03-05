@@ -49,6 +49,7 @@ namespace Books
             this.txtTitle.Size = new System.Drawing.Size(197, 26);
             this.txtTitle.TabIndex = 0;
             this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
+            this.txtTitle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTitle_KeyPress);
             // 
             // txtPublisher
             // 
@@ -57,6 +58,7 @@ namespace Books
             this.txtPublisher.Name = "txtPublisher";
             this.txtPublisher.Size = new System.Drawing.Size(197, 26);
             this.txtPublisher.TabIndex = 1;
+            this.txtPublisher.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPublisher_KeyPress);
             // 
             // txtYear
             // 
@@ -65,6 +67,8 @@ namespace Books
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(135, 26);
             this.txtYear.TabIndex = 2;
+            this.txtYear.TextChanged += new System.EventHandler(this.txtYear_TextChanged);
+            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // txtAuthor
             // 
@@ -73,6 +77,7 @@ namespace Books
             this.txtAuthor.Name = "txtAuthor";
             this.txtAuthor.Size = new System.Drawing.Size(197, 26);
             this.txtAuthor.TabIndex = 3;
+            this.txtAuthor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAuthor_KeyPress);
             // 
             // label1
             // 

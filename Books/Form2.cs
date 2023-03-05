@@ -29,6 +29,7 @@ namespace Books
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             if (isNewBook == true)
             {
                 con.Open();
@@ -65,6 +66,7 @@ namespace Books
             txtYear.Clear();
             txtPublisher.Clear();
         }
+       
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -78,6 +80,34 @@ namespace Books
 
         private void txtTitle_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar);
+        }
+
+        private void txtYear_TextChanged(object sender, EventArgs e)
+        {
+            txtYear.MaxLength = 4;
+        }
+
+        private void txtTitle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetter(e.KeyChar);
+
+        }
+
+        private void txtAuthor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetter(e.KeyChar);
+
+        }
+
+        private void txtPublisher_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetter(e.KeyChar);
 
         }
     }

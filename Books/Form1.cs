@@ -99,7 +99,20 @@ namespace Books
             GetBooks();
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string cmd = "Select * from [dbo].[BooksTable] where BooksTable like '" + textBox1.Text+"%'";
+            con.Open();
+            SqlCommand sqlCom = new SqlCommand(cmd, con);
+            SqlDataAdapter sdr = new SqlDataAdapter(sqlCom);
+            DataTable dt = new DataTable();
+            sdr.Fill(dt);
+            dataGridView1.DataSource = dt;
+            con.Close();
+             
 
+
+        }
     }
 }
 
