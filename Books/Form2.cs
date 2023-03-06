@@ -32,6 +32,7 @@ namespace Books
 
             if (isNewBook == true)
             {
+
                 con.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO BooksTable (Title,Author,YearOfPublication,Publisher) Values (@Title, @Author, @YearOfPublication, @Publisher)", con);
                 cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
@@ -73,19 +74,18 @@ namespace Books
             this.Close();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTitle_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar);
+
+            string x = e.KeyChar.ToString();
+            if (x == "\b" || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = !char.IsDigit(e.KeyChar);
+            }
         }
 
         private void txtYear_TextChanged(object sender, EventArgs e)
@@ -95,25 +95,41 @@ namespace Books
 
         private void txtTitle_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsLetter(e.KeyChar);
-
+            string x = e.KeyChar.ToString();
+            if (x == "\b" || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = !char.IsLetter(e.KeyChar);
+            }
         }
 
         private void txtAuthor_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsLetter(e.KeyChar);
-
+            string x = e.KeyChar.ToString();
+            if (x == "\b" || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = !char.IsLetter(e.KeyChar);
+            }
         }
 
         private void txtPublisher_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsLetter(e.KeyChar);
-
-        }
-
-        private void txtPublisher_TextChanged(object sender, EventArgs e)
-        {
-
+            string x = e.KeyChar.ToString();
+            if (x == "\b" || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = !char.IsLetter(e.KeyChar);
+            }
         }
     }
 }

@@ -107,6 +107,7 @@ namespace Books
             this.txtSearch.Size = new System.Drawing.Size(178, 20);
             this.txtSearch.TabIndex = 6;
             this.txtSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // button5
             // 

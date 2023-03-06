@@ -26,12 +26,6 @@ namespace Books
             form.ShowDialog();
             GetBooks();
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             GetBooks();
@@ -66,7 +60,12 @@ namespace Books
         {
             if (e.RowIndex >= 0)
             {
-                BookID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                var row = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (row == "")
+                {
+                    return;
+                }
+                BookID = Convert.ToInt32(row);
             }
             else
             {
@@ -109,7 +108,7 @@ namespace Books
 
         private void button5_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("Select * from BooksTable where Title Like @search + '%' or Author Like @search + '%' or" + " YearOfPublication Like @search + '%' or Publisher Like @search + '%'", con);
+            SqlCommand cmd = new SqlCommand("Select * from BooksTable where Title Like @search + '%' or Author Like '%' + @search + '%' or" + "  YearOfPublication Like @search + '%' or Publisher Like @search + '%'", con);
             cmd.Parameters.AddWithValue("search", txtSearch.Text);
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = cmd;
@@ -117,6 +116,7 @@ namespace Books
             dt.Clear();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+
         }
     }
 }
