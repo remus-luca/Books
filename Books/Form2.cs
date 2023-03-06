@@ -29,36 +29,39 @@ namespace Books
 
         private void button1_Click(object sender, EventArgs e)
         {
+           
+                if (isNewBook == true)
+                {
 
-            if (isNewBook == true)
-            {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO BooksTable (Title,Author,YearOfPublication,Publisher) Values (@Title, @Author, @YearOfPublication, @Publisher)", con);
+                    cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
+                    cmd.Parameters.AddWithValue("@Author", txtAuthor.Text);
+                    cmd.Parameters.AddWithValue("@YearOfPublication", txtYear.Text);
+                    cmd.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    ResetFormControls();
+                    this.Close();
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE BooksTable SET Title=@Title,Author=@Author,YearOfPublication=@YearOfPublication,Publisher=@Publisher WHERE BookID=@BookID", con);
+                    cmd.Parameters.AddWithValue("@BookID", BookID);
+                    cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
+                    cmd.Parameters.AddWithValue("@Author", txtAuthor.Text);
+                    cmd.Parameters.AddWithValue("@YearOfPublication", txtYear.Text);
+                    cmd.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    ResetFormControls();
+                    this.Close();
+                }
 
-                con.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO BooksTable (Title,Author,YearOfPublication,Publisher) Values (@Title, @Author, @YearOfPublication, @Publisher)", con);
-                cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
-                cmd.Parameters.AddWithValue("@Author", txtAuthor.Text);
-                cmd.Parameters.AddWithValue("@YearOfPublication", txtYear.Text);
-                cmd.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                ResetFormControls();
-                this.Close();
             }
-            else
-            {
-                SqlCommand cmd = new SqlCommand("UPDATE BooksTable SET Title=@Title,Author=@Author,YearOfPublication=@YearOfPublication,Publisher=@Publisher WHERE BookID=@BookID", con);
-                cmd.Parameters.AddWithValue("@BookID", BookID);
-                cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
-                cmd.Parameters.AddWithValue("@Author", txtAuthor.Text);
-                cmd.Parameters.AddWithValue("@YearOfPublication", txtYear.Text);
-                cmd.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                ResetFormControls();
-                this.Close();
-            }
-        }
+        
+
 
         private void ResetFormControls()
         {
@@ -72,6 +75,16 @@ namespace Books
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
@@ -104,6 +117,8 @@ namespace Books
             {
                 e.Handled = !char.IsLetter(e.KeyChar);
             }
+
+
         }
 
         private void txtAuthor_KeyPress(object sender, KeyPressEventArgs e)
@@ -130,6 +145,16 @@ namespace Books
             {
                 e.Handled = !char.IsLetter(e.KeyChar);
             }
+        }
+
+        private void txtPublisher_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAuthor_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

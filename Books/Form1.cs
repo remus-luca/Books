@@ -26,6 +26,14 @@ namespace Books
             form.ShowDialog();
             GetBooks();
         }
+
+
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             GetBooks();
@@ -116,6 +124,11 @@ namespace Books
             dt.Clear();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
 
         }
     }
