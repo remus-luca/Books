@@ -68,12 +68,7 @@ namespace Books
         {
             if (e.RowIndex >= 0)
             {
-                var row = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                if (row == "")
-                {
-                    return;
-                }
-                BookID = Convert.ToInt32(row);
+                BookID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
             else
             {

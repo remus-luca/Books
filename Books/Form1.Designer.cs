@@ -101,7 +101,7 @@ namespace Books
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(42, 23);
+            this.label1.Location = new System.Drawing.Point(42, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 20);
             this.label1.TabIndex = 5;
@@ -110,9 +110,10 @@ namespace Books
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(159, 23);
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtSearch.Location = new System.Drawing.Point(173, 23);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(228, 20);
+            this.txtSearch.Size = new System.Drawing.Size(228, 22);
             this.txtSearch.TabIndex = 6;
             this.txtSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
@@ -120,7 +121,7 @@ namespace Books
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.Location = new System.Drawing.Point(429, 20);
+            this.button5.Location = new System.Drawing.Point(420, 22);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(78, 28);
             this.button5.TabIndex = 7;

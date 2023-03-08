@@ -29,7 +29,8 @@ namespace Books
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            if (isValid())
+            {
                 if (isNewBook == true)
                 {
 
@@ -60,8 +61,32 @@ namespace Books
                 }
 
             }
-        
+        }
 
+        private bool isValid()
+        {
+            if (txtTitle.Text == string.Empty)
+            {
+                MessageBox.Show("Title is required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (txtAuthor.Text == string.Empty)
+            {
+                MessageBox.Show("Author is required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (txtYear.Text == string.Empty)
+            {
+                MessageBox.Show("Year is required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (txtPublisher.Text == string.Empty)
+            {
+                MessageBox.Show("Publisher is required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
 
         private void ResetFormControls()
         {
