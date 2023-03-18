@@ -18,28 +18,27 @@ namespace Books
         {
             InitializeComponent();
             BookID = book.BookID;
-            txtTitle.Text = book.Title;
-            txtAuthor.Text = book.Author;
-            txtYear.Text = book.YearOfPublication;
-            txtPublisher.Text = book.Publisher;
+            inputTitle.Text = book.Title;
+            inputAuthor.Text = book.Author;
+            inputYear.Text = book.YearOfPublication;
+            inputPublisher.Text = book.Publisher;
             isNewBook = false;
         }
 
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-MK5GMMO\SQLEXPRESS;Initial Catalog=Books;Integrated Security=True");
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
             if (isValid())
             {
                 if (isNewBook == true)
                 {
-
                     con.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO BooksTable (Title,Author,YearOfPublication,Publisher) Values (@Title, @Author, @YearOfPublication, @Publisher)", con);
-                    cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
-                    cmd.Parameters.AddWithValue("@Author", txtAuthor.Text);
-                    cmd.Parameters.AddWithValue("@YearOfPublication", txtYear.Text);
-                    cmd.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
+                    cmd.Parameters.AddWithValue("@Title", inputTitle.Text);
+                    cmd.Parameters.AddWithValue("@Author", inputAuthor.Text);
+                    cmd.Parameters.AddWithValue("@YearOfPublication", inputYear.Text);
+                    cmd.Parameters.AddWithValue("@Publisher", inputPublisher.Text);
                     cmd.ExecuteNonQuery();
                     con.Close();
                     ResetFormControls();
@@ -49,38 +48,37 @@ namespace Books
                 {
                     SqlCommand cmd = new SqlCommand("UPDATE BooksTable SET Title=@Title,Author=@Author,YearOfPublication=@YearOfPublication,Publisher=@Publisher WHERE BookID=@BookID", con);
                     cmd.Parameters.AddWithValue("@BookID", BookID);
-                    cmd.Parameters.AddWithValue("@Title", txtTitle.Text);
-                    cmd.Parameters.AddWithValue("@Author", txtAuthor.Text);
-                    cmd.Parameters.AddWithValue("@YearOfPublication", txtYear.Text);
-                    cmd.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
+                    cmd.Parameters.AddWithValue("@Title", inputTitle.Text);
+                    cmd.Parameters.AddWithValue("@Author", inputAuthor.Text);
+                    cmd.Parameters.AddWithValue("@YearOfPublication", inputYear.Text);
+                    cmd.Parameters.AddWithValue("@Publisher", inputPublisher.Text);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
                     ResetFormControls();
                     this.Close();
                 }
-
             }
         }
 
         private bool isValid()
         {
-            if (txtTitle.Text == string.Empty)
+            if (inputTitle.Text == string.Empty)
             {
                 MessageBox.Show("Title is required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (txtAuthor.Text == string.Empty)
+            else if (inputAuthor.Text == string.Empty)
             {
                 MessageBox.Show("Author is required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (txtYear.Text == string.Empty)
+            else if (inputYear.Text == string.Empty)
             {
                 MessageBox.Show("Year is required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if (txtPublisher.Text == string.Empty)
+            else if (inputPublisher.Text == string.Empty)
             {
                 MessageBox.Show("Publisher is required", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -90,14 +88,13 @@ namespace Books
 
         private void ResetFormControls()
         {
-            txtTitle.Clear();
-            txtAuthor.Clear();
-            txtYear.Clear();
-            txtPublisher.Clear();
+            inputTitle.Clear();
+            inputAuthor.Clear();
+            inputYear.Clear();
+            inputPublisher.Clear();
         }
 
-
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonRenounce_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -107,28 +104,9 @@ namespace Books
 
         }
 
-        private void txtTitle_TextChanged(object sender, EventArgs e)
+        private void inputTitle_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            string x = e.KeyChar.ToString();
-            if (x == "\b" || char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = !char.IsDigit(e.KeyChar);
-            }
-        }
-
-        private void txtYear_TextChanged(object sender, EventArgs e)
-        {
-            txtYear.MaxLength = 4;
         }
 
         private void txtTitle_KeyPress(object sender, KeyPressEventArgs e)
@@ -142,11 +120,14 @@ namespace Books
             {
                 e.Handled = !char.IsLetter(e.KeyChar);
             }
+        }
 
+        private void inputAuthor_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
-        private void txtAuthor_KeyPress(object sender, KeyPressEventArgs e)
+        private void inputAuthor_KeyPress(object sender, KeyPressEventArgs e)
         {
             string x = e.KeyChar.ToString();
             if (x == "\b" || char.IsWhiteSpace(e.KeyChar))
@@ -159,7 +140,26 @@ namespace Books
             }
         }
 
-        private void txtPublisher_KeyPress(object sender, KeyPressEventArgs e)
+        private void inputYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            string x = e.KeyChar.ToString();
+            if (x == "\b" || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = !char.IsDigit(e.KeyChar);
+            }
+        }
+
+        private void inputYear_TextChanged(object sender, EventArgs e)
+        {
+            inputYear.MaxLength = 4;
+        }
+
+        private void inputPublisher_KeyPress(object sender, KeyPressEventArgs e)
         {
             string x = e.KeyChar.ToString();
             if (x == "\b" || char.IsWhiteSpace(e.KeyChar))
@@ -172,12 +172,7 @@ namespace Books
             }
         }
 
-        private void txtPublisher_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtAuthor_TextChanged(object sender, EventArgs e)
+        private void inputPublisher_TextChanged(object sender, EventArgs e)
         {
 
         }
